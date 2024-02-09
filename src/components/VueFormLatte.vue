@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Form Generator</h1>
+        <h1>Form Generator - VueFormLatte</h1>
     </div>
 </template>
 

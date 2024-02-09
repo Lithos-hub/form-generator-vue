@@ -8,12 +8,12 @@ export default defineConfig({
   build: {
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: "FormGeneratorVue",
-      fileName: "form-generator-vue",
+      entry: resolve(__dirname, 'lib/index.ts'),
+      name: "VueFormLatte",
+      fileName: "vue-form-latte",
     },
     rollupOptions: {
-      external: ["vue"],
+      external: ["vue", "tailwindcss"],
       output: {
         globals: {
           vue: "Vue",
