@@ -1,13 +1,38 @@
 {
 	"name": "form-generator-vue",
 	"private": false,
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"type": "module",
 	"files": [
-		"dist"
+		"dist",
+		"src/components/"
 	],
 	"main": "./dist/form-generator-vue.umd.cjs",
 	"module": "./dist/form-generator-vue.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/form-generator-vue.js",
+			"require": "./dist/form-generator-vue.umd.cjs"
+		},
+		"./dist/style.css": {
+			"import": "./dist/style.css",
+			"require": "./dist/style.css"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Lithos-hub/form-generator-vue.git"
+	},
+	"keywords": [
+		"form",
+		"generator",
+		"form-generator",
+		"vue3",
+		"vue",
+		"vuejs",
+		"tailwindcss"
+	],
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build && vue-tsc --emitDeclarationOnly",
@@ -18,13 +43,6 @@
 	},
 	"dependencies": {
 		"vue": "^3.3.11"
-	},
-	"exports": {
-		".": {
-			"import": "./dist/form-generator-vue.js",
-			"require": "./dist/form-generator-vue.umd.cjs"
-		},
-		"./style.css": "./dist/style.css"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.17",
@@ -48,7 +66,6 @@
 		"typescript": "^5.3.3",
 		"vite": "^5.0.8",
 		"vue-eslint-parser": "^9.4.2",
-		"vue-tsc": "^1.8.25",
-		"form-generator-vue": "file:../form-generator-vue"
+		"vue-tsc": "^1.8.25"
 	}
 }

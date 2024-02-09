@@ -1,2 +1,2 @@
-import FormGenerator from "./components/FormGenerator.vue";
-export { FormGenerator }
+export { default as FormGeneratorVue } from "./components/FormGenerator.vue";
+
