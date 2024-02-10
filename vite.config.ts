@@ -13,7 +13,7 @@ export default defineConfig({
 		outDir: 'dist',
 		target: 'esnext',
 		lib: {
-			entry: resolve(__dirname, 'src/index.ts'),
+			entry: resolve(__dirname, 'src/lib/index.ts'),
 			name: 'vue-form-latte',
 			fileName: (format) => `vue-form-latte.${format}.js`,
 		},

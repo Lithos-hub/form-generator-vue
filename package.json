@@ -6,7 +6,7 @@
 		"url": "https://github.com/Lithos-hub/vue-form-latte.git/issues"
 	},
 	"private": false,
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"files": [
 		"dist"
@@ -18,7 +18,8 @@
 		".": {
 			"import": "./dist/vue-form-latte.es.js",
 			"require": "./dist/vue-form-latte.umd.js"
-		}
+		},
+		"./dist/style.css": "./dist/style.css"
 	},
 	"repository": {
 		"type": "git",
@@ -35,7 +36,8 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build && vue-tsc --emitDeclarationOnly && mv dist/src dist/types",
+		"build": "vite build && npm run build:tailwindcss && vue-tsc --emitDeclarationOnly && mv dist/src dist/types",
+		"build:tailwindcss": "npx tailwindcss -i ./src/lib/style.css -o ./dist/style.css --postcss --minify",
 		"preserve": "vite build",
 		"serve": "vite preview --port 5050",
 		"typecheck": "vue-tsc --noEmit",
