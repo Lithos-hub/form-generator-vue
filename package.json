@@ -25,9 +25,6 @@
 		"type": "git",
 		"url": "git+https://github.com/Lithos-hub/vue-form-latte.git"
 	},
-	"publishConfig": {
-		"@Lithos-hub:registry": "https://npm.pkg.github.com"
-	},
 	"keywords": [
 		"form",
 		"generator",
