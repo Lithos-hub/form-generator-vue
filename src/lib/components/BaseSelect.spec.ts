@@ -3,26 +3,26 @@ import { nextTick } from 'vue';
 import { render, fireEvent } from '@testing-library/vue';
 import BaseSelect from './BaseSelect.vue';
 
-const renderComponent = (props = {}) =>
+const renderComponent = ({ props = {} }) =>
 	render(BaseSelect, { props, global: { stubs: ['BaseInput'] } });
 
 describe('Given a BaseSelect component', () => {
 	describe('When it is rendered', () => {
-		test('Then it should renders the label when passed', async () => {
+		test('Then it should renders the label when passed', () => {
 			const { getByText } = renderComponent({
 				props: { label: 'Test Label', data: [] },
 			});
 			expect(getByText('Test Label')).toBeTruthy();
 		});
 
-		test('Then it should renders "Select an option" when no value is selected', async () => {
+		test('Then it should renders "Select an option" when no value is selected', () => {
 			const { getByText } = renderComponent({
 				props: { data: [] },
 			});
 			expect(getByText('Select an option')).toBeTruthy();
 		});
 
-		test('Then it should renders selected option label when value is selected', async () => {
+		test('Then it should renders selected option label when value is selected', () => {
 			const { getByText } = renderComponent({
 				props: {
 					data: [
@@ -47,8 +47,6 @@ describe('Given a BaseSelect component', () => {
 			const input = getByTestId('base-select__input');
 
 			await fireEvent.focus(input);
-
-			await nextTick();
 
 			await fireEvent.click(getByText('Option 1'));
 

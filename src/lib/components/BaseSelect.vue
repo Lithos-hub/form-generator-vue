@@ -8,7 +8,7 @@
 
 		<div class="relative">
 			<span class="absolute top-1/2 left-2 -translate-y-1/2">
-				{{ data.find((option) => option.value === value)?.label || 'Select an option' }}
+				{{ data?.find((option) => option.value === value)?.label || 'Select an option' }}
 			</span>
 			<BaseInput data-testid="base-select__input" @focus="isSelecting = true" />
 		</div>
