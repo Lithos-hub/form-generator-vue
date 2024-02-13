@@ -26,7 +26,7 @@
 		"url": "git+https://github.com/Lithos-hub/vue-form-latte.git"
 	},
 	"publishConfig": {
-		"@LITHOS-HUB:registry": "https://npm.pkg.github.com"
+		"@Lithos-hub:registry": "https://npm.pkg.github.com"
 	},
 	"keywords": [
 		"form",
