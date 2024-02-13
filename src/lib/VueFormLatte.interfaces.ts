@@ -1,16 +1,29 @@
-import { FormType } from "./VueFormLatte.const";
+// import { FormType } from "./VueFormLatte.const";
+import { BaseSelectItem } from "./components/BaseSelect.interfaces";
 
-export interface VueFormLatteItem {
-    componentType: FormType;
-    name: string;
+interface FormProps {
     value: unknown;
+    placeholder?: string;
+    label?: string;
+    required?: boolean;
+    disabled?: boolean;
+    readonly?: boolean;
+    options?: BaseSelectItem[];
+}
+export interface VueFormLatteItem {
+    componentType: string;
+    name: string;
+    customComponent?: unknown;
     colspan?: number | string;
+    props: FormProps;
 }
 
 export interface VueFormLatteProps {
+    dark?: boolean;
+    format?: 'grid' | 'column'
 	components: VueFormLatteItem[];
 }
 
 export interface VueFormLatte {
-    [key: string]: VueFormLatteItem['value'];
+    [key: string]: FormProps['value'];
 }
