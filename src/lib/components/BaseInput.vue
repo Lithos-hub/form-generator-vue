@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div data-testid="base-input">
         <label v-if="label" class="block text-sm font-light mb-1 font-medium">{{ label }}</label>
         <input v-model="model" class="input" v-bind="$attrs" />
     </div>

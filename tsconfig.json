@@ -25,6 +25,8 @@
 		"src",
 		"src/lib/",
 		"src/lib/*.vue",
-		"src/lib/components/"
-	]
+		"src/lib/components/",
+		"./jest.setup.ts"
+	],
+	"esclude": ["src/lib/**/*.spec.ts"]
 }
