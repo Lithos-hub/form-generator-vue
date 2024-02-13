@@ -1,18 +1,80 @@
-# Vue 3 + TypeScript + Vite
+# Vue Form Latte (Under development)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+[![npm](https://img.shields.io/npm/v/vue-form-latte)](https://www.npmjs.com/package/vue-form-latte)
+[![npm](https://img.shields.io/npm/dt/vue-form-latte)](https://www.npmjs.com/package/vue-form-latte)
+[![npm](https://img.shields.io/npm/l/vue-form-latte)](https://www.npmjs.com/package/vue-form-latte)
+[![npm](https://img.shields.io/npm/types/vue-form-latte)](https://www.npmjs.com/package/vue-form-latte)
+[![npm](https://img.shields.io/bundlephobia/min/vue-form-latte)](https://www.npmjs.com/package/vue-form-latte)
+[![npm](https://img.shields.io/bundlephobia/minzip/vue-form-latte)](https://www.npmjs.com/package/vue-form-latte)
 
-## Recommended IDE Setup
+Vue Form Latte is a form generator framework for Vue 3. It is designed to be a flexible and powerful tool for building forms with Vue 3, TypeScript and Tailwind CSS.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Features
 
-## Type Support For `.vue` Imports in TS
+- **Simple**: Vue Form Latte is designed to be simple and easy to use. It is built on top of Vue 3, TypeScript and Tailwind CSS.
+- **Flexible**: Vue Form Latte is designed to be flexible and powerful. It provides a wide range of form elements and validation rules.
+- **Customizable**: Vue Form Latte is designed to be customizable. It provides a wide range of form elements and validation rules.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Installation
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+```bash
+npm install vue-form-latte
+```
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Usage
+
+```vue
+<template>
+	<VueFormLatte format="grid" :components="components" @submit="onSubmit" />
+</template>
+
+<script setup lang="ts">
+const components: VueFormLatteItem[] = [
+	{
+		componentType: 'input',
+		name: 'userName',
+		colspan: 6,
+		props: {
+			initialValue: 'Input value',
+			placeholder: 'Input placeholder',
+			label: 'Default input label',
+		},
+	},
+	{
+		componentType: 'input',
+		customComponent: CustomInput,
+		name: 'Lastname',
+		colspan: 6,
+		props: {
+			initialValue: 'Input value',
+			placeholder: 'Custom input placeholder',
+			label: 'Custom input label',
+		},
+	},
+	{
+		componentType: 'select',
+		name: 'userCountry',
+		colspan: 4,
+		props: {
+			initialValue: 'us',
+			label: 'Select label',
+			options: [
+				{ value: 'us', label: 'United States' },
+				{ value: 'mx', label: 'Mexico' },
+				{ value: 'ca', label: 'Canada' },
+			],
+		},
+	},
+	{
+		componentType: 'textarea',
+		name: 'userBio',
+		colspan: 8,
+		props: {
+			initialValue: 'This is the textarea value',
+			label: 'Textarea label',
+			placeholder: 'Textarea placeholder',
+		},
+	},
+];
+</script>
+```
