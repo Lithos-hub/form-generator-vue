@@ -2,7 +2,7 @@
 import { BaseSelectItem } from "./components/BaseSelect.interfaces";
 
 interface FormProps {
-    value: unknown;
+    initialValue: unknown;
     placeholder?: string;
     label?: string;
     required?: boolean;
@@ -25,5 +25,5 @@ export interface VueFormLatteProps {
 }
 
 export interface VueFormLatte {
-    [key: string]: FormProps['value'];
+    [key: string]: FormProps['initialValue'];
 }

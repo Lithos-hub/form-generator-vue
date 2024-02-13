@@ -18,9 +18,9 @@ const components: VueFormLatteItem[] = [
     name: 'userName',
     colspan: 6,
     props: {
-      value: 'Input value',
+      initialValue: 'Input value',
       placeholder: 'Input placeholder',
-      label: 'Input lbel',
+      label: 'Default input label',
     }
   },
   {
@@ -29,34 +29,35 @@ const components: VueFormLatteItem[] = [
     name: 'Lastname',
     colspan: 6,
     props: {
-      value: 'Input value',
+      initialValue: 'Input value',
       placeholder: 'Custom input placeholder',
       label: 'Custom input label',
     }
   },
-  // {
-  //   componentType: 'select',
-  //   name: 'userCountry',
-  //   colspan: 4,
-  //   props: {
-  //     value: 'United States',
-  //     label: 'Select label',
-  //     options: [
-  //       { value: 'us', label: 'United States' },
-  //       { value: 'mx', label: 'Mexico' },
-  //       { value: 'ca', label: 'Canada' },
-  //     ]
-  //   }
-  // },
-  // {
-  //   componentType: 'textarea',
-  //   name: 'userBio',
-  //   colspan: 8,
-  //   props: {
-  //     value: 'This is the textarea value',
-  //     label: 'Textarea label',
-  //   }
-  // }
+  {
+    componentType: 'select',
+    name: 'userCountry',
+    colspan: 4,
+    props: {
+      initialValue: 'us',
+      label: 'Select label',
+      options: [
+        { value: 'us', label: 'United States' },
+        { value: 'mx', label: 'Mexico' },
+        { value: 'ca', label: 'Canada' },
+      ]
+    }
+  },
+  {
+    componentType: 'textarea',
+    name: 'userBio',
+    colspan: 8,
+    props: {
+      initialValue: 'This is the textarea value',
+      label: 'Textarea label',
+      placeholder: 'Textarea placeholder',
+    }
+  }
 ]
 
 const onSubmit = () => alert('Form submitted!')

@@ -11,10 +11,27 @@
 			:key="i"
 			:class="`col-span-${colspan || 12}`">
 			<component
-				:is="customComponent || componentOptions[componentType as keyof typeof componentOptions]"
+				:is="customComponent || componentOptions['input']"
+				v-if="componentType === 'input'"
+				:key="renderKey"
 				v-model="model[name]"
 				:name="name"
-				v-bind="props"/>
+				v-bind="props" />
+			<component
+				:is="customComponent || componentOptions['select']"
+				v-if="componentType === 'select'"
+				:key="renderKey"
+				:value="model[name]"
+				:name="name"
+				v-bind="props"
+				@on-select="onSelect(name, $event)" />
+			<component
+				:is="customComponent || componentOptions['textarea']"
+				v-if="componentType === 'textarea'"
+				:key="renderKey"
+				v-model="model[name]"
+				:name="name"
+				v-bind="props" />
 		</div>
 	</form>
 </template>
@@ -22,30 +39,20 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { VueFormLatteProps, VueFormLatte } from './VueFormLatte.interfaces';
-import BaseInput from "./components/BaseInput.vue"
-import BaseSelect from "./components/BaseSelect.vue"
-import BaseTextarea from "./components/BaseTextarea.vue";
-// import BaseCheckbox from "./components/BaseCheckbox.vue";
-// import BaseRadio from "./components/BaseRadio.vue";
-// import BaseFile from "./components/BaseFile.vue";
-// import BaseButton from "./components/BaseButton.vue";
+import { componentOptions } from './VueFormLatte.const';
 
 const { components } = defineProps<VueFormLatteProps>();
 defineEmits(['submit']);
 
 const model = ref<VueFormLatte>({});
 
-const componentOptions = {
-    input: BaseInput,
-    select: BaseSelect,
-    textarea: BaseTextarea,
-    // checkbox: BaseCheckbox,
-    // radio: BaseRadio,
-    // file: BaseFile,
-    // button: BaseButton
+const renderKey = ref(0);
+
+const onSelect = (name: string, value: string | number) => {
+	model.value[name] = value;
 }
 
 onMounted(() => {
-	components.forEach(({ name, props }) => (model.value[name] = props.value));
+	components.forEach(({ name, props }) => (model.value[name] = props.initialValue));
 });
 </script>
