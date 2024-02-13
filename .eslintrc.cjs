@@ -15,9 +15,16 @@ module.exports = {
 		'@vue/typescript/recommended',
 		'prettier',
 		'eslint-config-prettier',
+		'plugin:prettier/recommended',
 	],
 	plugins: ['@typescript-eslint', 'prettier'],
 	rules: {
 		'vue/html-closing-bracket-newline': [2, { multiline: 'never' }],
+		'prettier/prettier': [
+			'error',
+			{
+				endOfLine: 'auto',
+			},
+		],
 	},
 };

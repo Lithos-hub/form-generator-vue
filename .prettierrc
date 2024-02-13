@@ -1,5 +1,9 @@
 {
-  "useTabs": true,
-  "singleQuote": true,
-  "arrowParens": "always"
+	"useTabs": true,
+	"singleQuote": true,
+	"semi": true,
+	"printWidth": 100,
+	"htmlWhitespaceSensitivity": "ignore",
+	"endOfLine": "auto",
+	"bracketSameLine": true
 }

@@ -50,7 +50,7 @@ const renderKey = ref(0);
 
 const onSelect = (name: string, value: string | number) => {
 	model.value[name] = value;
-}
+};
 
 onMounted(() => {
 	components.forEach(({ name, props }) => (model.value[name] = props.initialValue));

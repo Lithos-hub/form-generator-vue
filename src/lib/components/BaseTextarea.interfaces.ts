@@ -1,5 +1,5 @@
-import type { TextareaHTMLAttributes } from 'vue'
+import type { TextareaHTMLAttributes } from 'vue';
 
 export interface BaseTextareaProps extends /* @vue-ignore */ TextareaHTMLAttributes {
-    label?: string;
+	label?: string;
 }

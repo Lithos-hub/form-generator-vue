@@ -1,15 +1,11 @@
-import { render } from '@testing-library/vue'
-import BaseInput from './BaseInput.vue'
+import { render } from '@testing-library/vue';
+import BaseInput from './BaseInput.vue';
 
-const renderComponent = ({ props = {} }) => render(BaseInput, { props })
+const renderComponent = (props = {}) => render(BaseInput, { props });
 
-
-describe('Given BaseInput component', () => {
-    describe('When is rendered', () => {
-        it('Should render the component', () => {
-            const { getByTestId } = renderComponent({})
-
-            expect(getByTestId('base-input')).toBeTruthy()
-        })
-    })
-})
+describe('Given a BaseInput component', () => {
+	test('Then it displays label when passed as a prop', async () => {
+		const { getByText } = renderComponent({ label: 'Test label' });
+		expect(getByText('Test label')).toBeTruthy();
+	});
+});
