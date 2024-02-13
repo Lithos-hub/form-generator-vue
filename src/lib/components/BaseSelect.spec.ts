@@ -1,5 +1,3 @@
-// FILEPATH: /C:/Users/csegu/Desktop/DEV/vue-form-latte/src/lib/components/BaseSelect.spec.ts
-import { nextTick } from 'vue';
 import { render, fireEvent } from '@testing-library/vue';
 import BaseSelect from './BaseSelect.vue';
 
