@@ -2,9 +2,14 @@
 	<div class="bg-stone-100 h-screen flex flex-col justify-center items-center">
 		<div class="bg-white p-5 rounded shadow-xl w-[75vw]">
 			<VueFormLatte ref="formRef" format="grid" :components="components" @submit="onSubmit" />
+			<button
+				class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
+				@click="submitForm">
+				Submit form
+			</button>
 			<hr class="my-10" />
 			<strong>Form values:</strong>
-			<pre class="bg-[#101010] text-green-500 rounded p-2">{{ formValues }}</pre>
+			<pre class="bg-[#34495E] text-[#41B883] rounded p-2 font-sans">{{ formValues }}</pre>
 		</div>
 	</div>
 </template>
@@ -24,7 +29,7 @@ const components: VueFormLatteItem[] = [
 		componentType: 'input',
 		colspan: 4,
 		props: {
-			name: 'userName',
+			name: 'defaultInput',
 			initialValue: 'Input value',
 			placeholder: 'Input placeholder',
 			label: 'Default input',
@@ -35,7 +40,7 @@ const components: VueFormLatteItem[] = [
 		customComponent: CustomInput,
 		colspan: 4,
 		props: {
-			name: 'Lastname',
+			name: 'customInput',
 			initialValue: 'Input value',
 			placeholder: 'Custom input placeholder',
 			label: 'Custom component input',
@@ -47,7 +52,7 @@ const components: VueFormLatteItem[] = [
 		props: {
 			customStyles:
 				'p-3 shadow-xl w-full bg-slate-100 border-b-2 outline-none border-cyan-900 caret-[#202020] text-[#101010]',
-			name: 'Lastname',
+			name: 'defaultStyledInput',
 			initialValue: 'Input value',
 			placeholder: 'Custom input placeholder',
 			label: 'Default input with custom styles',
@@ -57,7 +62,7 @@ const components: VueFormLatteItem[] = [
 		componentType: 'select',
 		colspan: 6,
 		props: {
-			name: 'userCountry',
+			name: 'defaultSelect',
 			initialValue: 'us',
 			label: 'Select label',
 			selectData: [
@@ -71,7 +76,7 @@ const components: VueFormLatteItem[] = [
 		componentType: 'textarea',
 		colspan: 6,
 		props: {
-			name: 'userBio',
+			name: 'defaultTextarea',
 			initialValue: 'This is the textarea value',
 			label: 'Textarea label',
 			placeholder: 'Textarea placeholder',
@@ -79,9 +84,9 @@ const components: VueFormLatteItem[] = [
 	},
 	{
 		componentType: 'radio',
-		colspan: 4,
+		colspan: 3,
 		props: {
-			name: 'userRadio',
+			name: 'defaultRadio',
 			initialValue: 'one',
 			label: 'Radio label',
 			radioData: [
@@ -91,7 +96,28 @@ const components: VueFormLatteItem[] = [
 			],
 		},
 	},
+	{
+		componentType: 'checkbox',
+		colspan: 3,
+		props: {
+			name: 'defaultCheckbox',
+			initialValue: true,
+			label: 'Single checkbox label',
+		},
+	},
+	{
+		componentType: 'checkbox',
+		colspan: 3,
+		props: {
+			isToggle: true,
+			name: 'defaultCheckboxToggle',
+			initialValue: true,
+			label: 'Single toggle label',
+		},
+	},
 ];
+
+const submitForm = () => formRef.value?.onSubmit();
 
 const onSubmit = () => alert('Form submitted!');
 </script>

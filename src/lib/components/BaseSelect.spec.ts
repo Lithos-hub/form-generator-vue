@@ -8,14 +8,14 @@ describe('Given a BaseSelect component', () => {
 	describe('When it is rendered', () => {
 		test('Then it should renders the label when passed', () => {
 			const { getByText } = renderComponent({
-				props: { label: 'Test Label', data: [] },
+				props: { label: 'Test Label', selectData: [] },
 			});
 			expect(getByText('Test Label')).toBeTruthy();
 		});
 
 		test('Then the input should display "Select an option" as value when no value is selected', () => {
 			const { getByTestId } = renderComponent({
-				props: { data: [] },
+				props: { selectData: [] },
 			});
 
 			const input = getByTestId('base-select__input');
@@ -25,7 +25,7 @@ describe('Given a BaseSelect component', () => {
 		test('Then it should renders selected option label when value is selected', async () => {
 			const { getByText, getByTestId } = renderComponent({
 				props: {
-					data: [
+					selectData: [
 						{ label: 'Option 1', value: '1' },
 						{ label: 'Option 2', value: '2' },
 					],
@@ -42,7 +42,7 @@ describe('Given a BaseSelect component', () => {
 		test('Then it should emits "on-select" event with selected value when an option is clicked', async () => {
 			const { getByTestId, getByText, emitted } = renderComponent({
 				props: {
-					data: [
+					selectData: [
 						{ label: 'Option 1', value: '1' },
 						{ label: 'Option 2', value: '2' },
 					],

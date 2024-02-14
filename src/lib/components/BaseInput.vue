@@ -8,7 +8,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { BaseInputProps } from './BaseInput.interfaces';
-const { modelValue } = defineProps<BaseInputProps>();
+
+const { modelValue } = withDefaults(defineProps<BaseInputProps>(), {
+	type: 'text',
+});
 
 const model = defineModel<string | number>();
 

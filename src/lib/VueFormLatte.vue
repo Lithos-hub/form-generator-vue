@@ -5,34 +5,35 @@
 			'grid grid-cols-12': format === 'grid',
 			'flex flex-col': format === 'column',
 		}"
-		@submit.prevent="$emit('submit')">
+		@submit.prevent="onSubmit">
 		<div
 			v-for="({ componentType, customComponent, colspan, props }, i) of components"
 			:key="i"
-			:class="`col-span-${colspan || 12} self-center`">
+			:class="`col-span-${colspan || 12} self-start`">
 			<component
-				:is="customComponent || componentOptions['input']"
+				:is="customComponent || componentOptions.input"
 				v-if="componentType === 'input'"
-				:key="renderKey"
 				v-model="model[props.name]"
 				v-bind="props" />
 			<component
-				:is="customComponent || componentOptions['select']"
+				:is="customComponent || componentOptions.select"
 				v-if="componentType === 'select'"
-				:key="renderKey"
 				:value="model[props.name]"
 				v-bind="props"
 				@on-select="onSelect(props.name, $event)" />
 			<component
-				:is="customComponent || componentOptions['textarea']"
+				:is="customComponent || componentOptions.textarea"
 				v-if="componentType === 'textarea'"
-				:key="renderKey"
 				v-model="model[props.name]"
 				v-bind="props" />
 			<component
-				:is="customComponent || componentOptions['radio']"
+				:is="customComponent || componentOptions.radio"
 				v-if="componentType === 'radio'"
-				:key="renderKey"
+				v-model="model[props.name]"
+				v-bind="props" />
+			<component
+				:is="customComponent || componentOptions.checkbox"
+				v-if="componentType === 'checkbox'"
 				v-model="model[props.name]"
 				v-bind="props" />
 		</div>
@@ -49,20 +50,20 @@ const { components } = withDefaults(defineProps<VueFormLatteProps>(), {
 	format: 'column',
 });
 
-defineEmits(['submit']);
+const emit = defineEmits(['submit']);
 
 const model = ref<VueFormLatte>({});
-
-const renderKey = ref(0);
 
 const onSelect = (name: string, value: string | number) => {
 	model.value[name] = value;
 };
+
+const onSubmit = () => emit('submit', model.value);
 
 onMounted(() => {
 	components.forEach(({ props }) => (model.value[props.name] = props.initialValue));
 	initFlowbite();
 });
 
-defineExpose({ model });
+defineExpose({ model, onSubmit });
 </script>
