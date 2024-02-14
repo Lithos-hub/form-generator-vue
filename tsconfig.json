@@ -19,6 +19,12 @@
 		"outDir": "dist",
 		"declaration": true
 	},
-	"include": ["vite.config.*", "src/lib/*"],
+	"include": [
+		"vite.config.*",
+		"src/lib/**/*.ts",
+		"src/lib/**/*.d.ts",
+		"src/lib/**/*.tsx",
+		"src/lib/**/*.vue"
+	],
 	"exclude": ["src/lib/**/*.spec.ts"]
 }

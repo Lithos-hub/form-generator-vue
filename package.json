@@ -6,14 +6,14 @@
 		"url": "https://github.com/Lithos-hub/vue-form-latte.git/issues"
 	},
 	"private": false,
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"type": "module",
 	"files": [
 		"dist"
 	],
 	"main": "./dist/vue-form-latte.umd.js",
 	"module": "./dist/vue-form-latte.es.js",
-	"types": "./dist/types/index.d.ts",
+	"types": "./dist/src/lib/index.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/vue-form-latte.es.js",
