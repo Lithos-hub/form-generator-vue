@@ -1,4 +1,4 @@
-name: VueFormLatte Workflow
+name: Pipeline
 
 on:
   push:
