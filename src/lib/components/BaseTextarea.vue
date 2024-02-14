@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<label v-if="label" :for="name">
+		<label v-if="label" :for="name" class="default__label">
 			{{ label }}
 		</label>
-		<textarea v-model="model" v-bind="$attrs" />
+		<textarea v-model="model" v-bind="$attrs" class="default__textarea" />
 	</div>
 </template>
 

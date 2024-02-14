@@ -9,7 +9,7 @@
 		<div
 			v-for="({ componentType, customComponent, colspan, props }, i) of components"
 			:key="i"
-			:class="`col-span-${colspan || 12}`">
+			:class="`col-span-${colspan || 12} self-center`">
 			<component
 				:is="customComponent || componentOptions['input']"
 				v-if="componentType === 'input'"
@@ -26,6 +26,12 @@
 			<component
 				:is="customComponent || componentOptions['textarea']"
 				v-if="componentType === 'textarea'"
+				:key="renderKey"
+				v-model="model[props.name]"
+				v-bind="props" />
+			<component
+				:is="customComponent || componentOptions['radio']"
+				v-if="componentType === 'radio'"
 				:key="renderKey"
 				v-model="model[props.name]"
 				v-bind="props" />
@@ -57,4 +63,6 @@ onMounted(() => {
 	components.forEach(({ props }) => (model.value[props.name] = props.initialValue));
 	initFlowbite();
 });
+
+defineExpose({ model });
 </script>
