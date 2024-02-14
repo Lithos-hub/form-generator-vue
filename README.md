@@ -1,7 +1,7 @@
 # Vue Form Latte (WIP)
 
 <div id="header" align="center">
-<img src='public/logo.png' width='200' />
+<img src='public/logo-v2.png' width='200' />
 
 <hr />
 
