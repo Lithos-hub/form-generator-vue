@@ -7,6 +7,7 @@ export interface BaseSelectItem {
 
 export interface BaseSelectProps extends /* @vue-ignore */ SelectHTMLAttributes {
 	data: BaseSelectItem[] | [];
+	name: string;
 	value: string | number;
 	placeholder?: string;
 	label?: string;

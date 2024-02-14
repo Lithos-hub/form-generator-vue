@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-stone-100 h-screen flex flex-col justify-center items-center">
-		<div class="w-[1000px]">
+		<div class="w-[1000px] bg-white p-5 rounded shadow-xl">
 			<VueFormLatte format="grid" :components="components" @submit="onSubmit" />
 		</div>
 	</div>
@@ -14,9 +14,9 @@ import CustomInput from './CustomInput.vue';
 const components: VueFormLatteItem[] = [
 	{
 		componentType: 'input',
-		name: 'userName',
 		colspan: 6,
 		props: {
+			name: 'userName',
 			initialValue: 'Input value',
 			placeholder: 'Input placeholder',
 			label: 'Default input label',
@@ -25,9 +25,9 @@ const components: VueFormLatteItem[] = [
 	{
 		componentType: 'input',
 		customComponent: CustomInput,
-		name: 'Lastname',
 		colspan: 6,
 		props: {
+			name: 'Lastname',
 			initialValue: 'Input value',
 			placeholder: 'Custom input placeholder',
 			label: 'Custom input label',
@@ -35,12 +35,12 @@ const components: VueFormLatteItem[] = [
 	},
 	{
 		componentType: 'select',
-		name: 'userCountry',
 		colspan: 4,
 		props: {
+			name: 'userCountry',
 			initialValue: 'us',
 			label: 'Select label',
-			options: [
+			data: [
 				{ value: 'us', label: 'United States' },
 				{ value: 'mx', label: 'Mexico' },
 				{ value: 'ca', label: 'Canada' },
@@ -49,9 +49,9 @@ const components: VueFormLatteItem[] = [
 	},
 	{
 		componentType: 'textarea',
-		name: 'userBio',
 		colspan: 8,
 		props: {
+			name: 'userBio',
 			initialValue: 'This is the textarea value',
 			label: 'Textarea label',
 			placeholder: 'Textarea placeholder',

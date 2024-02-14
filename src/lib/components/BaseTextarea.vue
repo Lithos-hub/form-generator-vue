@@ -1,18 +1,21 @@
 <template>
 	<div>
-		<label v-if="label" class="block text-sm font-light mb-1 font-medium">{{ label }}</label>
-		<textarea class="textarea" v-bind="$attrs" />
+		<label v-if="label" :for="name">
+			{{ label }}
+		</label>
+		<textarea v-model="model" v-bind="$attrs" />
 	</div>
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { BaseTextareaProps } from './BaseTextarea.interfaces';
 
-defineProps<BaseTextareaProps>();
-</script>
+const { modelValue } = defineProps<BaseTextareaProps>();
 
-<style scoped>
-.textarea {
-	@apply w-full p-2 transition-all duration-75 border rounded outline-none font-light focus:ring-2;
-}
-</style>
+const model = defineModel<string | number>();
+
+onMounted(() => {
+	model.value = modelValue;
+});
+</script>

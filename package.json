@@ -50,6 +50,7 @@
 		"coverage": "vitest run --coverage"
 	},
 	"dependencies": {
+		"flowbite": "^2.2.1",
 		"vite-plugin-css-injected-by-js": "^3.4.0",
 		"vue": "^3.3.11"
 	},
