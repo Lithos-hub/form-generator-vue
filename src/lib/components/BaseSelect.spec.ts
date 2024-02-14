@@ -13,15 +13,17 @@ describe('Given a BaseSelect component', () => {
 			expect(getByText('Test Label')).toBeTruthy();
 		});
 
-		test('Then it should renders "Select an option" when no value is selected', () => {
-			const { getByText } = renderComponent({
+		test('Then the input should display "Select an option" as value when no value is selected', () => {
+			const { getByTestId } = renderComponent({
 				props: { data: [] },
 			});
-			expect(getByText('Select an option')).toBeTruthy();
+
+			const input = getByTestId('base-select__input');
+			expect((input as HTMLInputElement).value).toBe('Select an option');
 		});
 
-		test('Then it should renders selected option label when value is selected', () => {
-			const { getByText } = renderComponent({
+		test('Then it should renders selected option label when value is selected', async () => {
+			const { getByText, getByTestId } = renderComponent({
 				props: {
 					data: [
 						{ label: 'Option 1', value: '1' },
@@ -30,6 +32,10 @@ describe('Given a BaseSelect component', () => {
 					value: '2',
 				},
 			});
+			const input = getByTestId('base-select__input');
+
+			await fireEvent.focus(input);
+
 			expect(getByText('Option 2')).toBeTruthy();
 		});
 
