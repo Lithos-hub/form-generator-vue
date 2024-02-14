@@ -19,6 +19,6 @@
 		"outDir": "dist",
 		"declaration": true
 	},
-	"include": ["vite.config.*", "env.d.ts", "src", "src/lib/**/*.vue", "./jest.setup.ts"],
-	"esclude": ["src/lib/**/*.spec.ts"]
+	"include": ["vite.config.*", "src/lib/*"],
+	"exclude": ["src/lib/**/*.spec.ts"]
 }
