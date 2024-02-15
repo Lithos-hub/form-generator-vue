@@ -15,7 +15,7 @@
 
 </div>
 
-Vue Form Latte is a form generator framework for Vue 3. It is designed to be a flexible and powerful tool for building forms with Vue 3, TypeScript and Tailwind CSS.
+Vue Form Latte is a form generator library for Vue 3. It is designed to be a flexible and powerful tool for building forms with Vue 3, TypeScript and Tailwind CSS.
 
 ## Installation
 
