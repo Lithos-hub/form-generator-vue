@@ -1,5 +1,6 @@
 // import { FormType } from "./VueFormLatte.const";
 import { BaseCheckboxItem } from './components/BaseCheckbox.interfaces';
+import { BaseMultiselectItem } from './components/BaseMultiselect.interfaces';
 import { BaseRadioItem } from './components/BaseRadio.interfaces';
 import { BaseSelectItem } from './components/BaseSelect.interfaces';
 
@@ -31,6 +32,7 @@ interface FormComponentProps {
 	readonly?: boolean;
 	isToggle?: boolean;
 	selectData?: BaseSelectItem[];
+	multiselectData?: BaseMultiselectItem[];
 	radioData?: BaseRadioItem[];
 	checkboxData?: BaseCheckboxItem[];
 }

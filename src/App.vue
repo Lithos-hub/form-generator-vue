@@ -1,6 +1,6 @@
 <template>
 	<div class="bg-stone-100 h-screen flex flex-col justify-center items-center">
-		<div class="bg-white p-5 rounded shadow-xl w-[75vw]">
+		<div class="bg-white p-5 rounded shadow-xl w-[75vw] max-h-[90vh] overflow-auto">
 			<VueFormLatte ref="formRef" format="grid" :components="components" @submit="onSubmit" />
 			<button
 				class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
@@ -9,7 +9,9 @@
 			</button>
 			<hr class="my-10" />
 			<strong>Form values:</strong>
-			<pre class="bg-[#34495E] text-[#41B883] rounded p-2 font-sans">{{ formValues }}</pre>
+			<pre class="bg-[#34495E] text-[#41B883] rounded p-2 font-sans max-h-[300px] overflow-auto">{{
+				formValues
+			}}</pre>
 		</div>
 	</div>
 </template>
@@ -69,6 +71,38 @@ const components: VueFormLatteItem[] = [
 				{ value: 'us', label: 'United States' },
 				{ value: 'mx', label: 'Mexico' },
 				{ value: 'ca', label: 'Canada' },
+			],
+		},
+	},
+	{
+		componentType: 'multiselect',
+		colspan: 6,
+		props: {
+			name: 'defaultMultiselect',
+			initialValue: ['us', 'mx'],
+			label: 'Multiselect label',
+			placeholder: 'Multiselect placeholder',
+			multiselectData: [
+				{ value: 'us', label: '🇺🇸 United States' },
+				{ value: 'mx', label: '🇲🇽 Mexico' },
+				{ value: 'ca', label: '🇨🇦 Canada' },
+				{ value: 'br', label: '🇧🇷 Brazil' },
+				{ value: 'ar', label: '🇦🇷 Argentina' },
+				{ value: 'co', label: '🇨🇴 Colombia' },
+				{ value: 'pe', label: '🇵🇪 Peru' },
+				{ value: 've', label: '🇻🇪 Venezuela' },
+				{ value: 'cl', label: '🇨🇱 Chile' },
+				{ value: 'ec', label: '🇪🇨 Ecuador' },
+				{ value: 'gt', label: '🇬🇹 Guatemala' },
+				{ value: 'cu', label: '🇨🇺 Cuba' },
+				{ value: 'do', label: '🇩🇴 Dominican Republic' },
+				{ value: 'hn', label: '🇭🇳 Honduras' },
+				{ value: 'ni', label: '🇳🇮 Nicaragua' },
+				{ value: 'cr', label: '🇨🇷 Costa Rica' },
+				{ value: 'pa', label: '🇵🇦 Panama' },
+				{ value: 'jm', label: '🇯🇲 Jamaica' },
+				{ value: 'bs', label: '🇧🇸 Bahamas' },
+				{ value: 'bb', label: '🇧🇧 Barbados' },
 			],
 		},
 	},

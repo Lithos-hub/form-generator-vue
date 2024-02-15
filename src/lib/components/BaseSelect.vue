@@ -8,7 +8,7 @@
 
 		<div class="relative">
 			<input
-				:value="selectData?.find((option) => option.value === value)?.label || 'Select an option'"
+				:value="selectData?.find((option) => option.value === model)?.label || 'Select an option'"
 				readonly
 				data-testid="base-select__input"
 				class="default__input"
@@ -16,7 +16,7 @@
 		</div>
 		<ul
 			v-if="isSelecting"
-			class="absolute bg-white border border-gray-300 mt-1 w-full rounded-md shadow-lg z-50">
+			class="absolute max-h-[250px] overflow-auto bg-white border border-gray-300 mt-1 w-full rounded-md shadow-lg z-50">
 			<li
 				v-for="{ label, value } in selectData"
 				:key="value"
@@ -34,12 +34,12 @@ import { BaseSelectProps } from './BaseSelect.interfaces';
 
 defineProps<BaseSelectProps>();
 
-const emit = defineEmits(['on-select']);
+const model = defineModel<string | number>();
 
 const isSelecting = ref(false);
 
 const onSelectItem = (value: string | number) => {
 	isSelecting.value = false;
-	emit('on-select', value);
+	model.value = value;
 };
 </script>

@@ -18,9 +18,13 @@
 			<component
 				:is="customComponent || componentOptions.select"
 				v-if="componentType === 'select'"
-				:value="model[props.name]"
-				v-bind="props"
-				@on-select="onSelect(props.name, $event)" />
+				v-model="model[props.name]"
+				v-bind="props" />
+			<component
+				:is="customComponent || componentOptions.multiselect"
+				v-if="componentType === 'multiselect'"
+				v-model="model[props.name]"
+				v-bind="props" />
 			<component
 				:is="customComponent || componentOptions.textarea"
 				v-if="componentType === 'textarea'"
@@ -53,10 +57,6 @@ const { components } = withDefaults(defineProps<VueFormLatteProps>(), {
 const emit = defineEmits(['submit']);
 
 const model = ref<VueFormLatte>({});
-
-const onSelect = (name: string, value: string | number) => {
-	model.value[name] = value;
-};
 
 const onSubmit = () => emit('submit', model.value);
 
