@@ -32,15 +32,16 @@
 			</small>
 		</div>
 
+		<!-- Options list -->
 		<ul
 			v-if="isSelecting"
 			class="absolute max-h-[250px] overflow-auto bg-white border border-gray-300 mt-1 w-full rounded-md shadow-lg z-50">
 			<li
-				v-for="({ label, value }, i) of computedData"
+				v-for="({ label, value }, i) of multiselectData"
 				:key="i"
 				data-testid="base-dropdown__list-item"
 				class="p-2 hover:bg-indigo-100 cursor-pointer first:rounded-t-md last:rounded-b-md flex gap-2.5"
-				@click="onItemClick(String(value))">
+				@click="addOrRemoveItem(value)">
 				<input
 					v-model="model"
 					type="checkbox"
@@ -54,43 +55,26 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType, ref, Ref } from 'vue';
+import { computed, onMounted, ref, Ref } from 'vue';
 import { BaseMultiselectProps } from './BaseMultiselect.interfaces';
 
-const { multiselectData } = defineProps<BaseMultiselectProps>();
+const { multiselectData, initialValue } = defineProps<BaseMultiselectProps>();
 
-const model = defineModel({
-	type: Array as PropType<string[]>,
-	default: [],
-});
-
-const emit = defineEmits(['input', 'change']);
+const model = defineModel<unknown[]>();
 
 const isSelecting: Ref<boolean> = ref(false);
-const inputValue = ref<string>('');
-
-const computedData = computed(() => {
-	return multiselectData.filter(({ label }) =>
-		label.toLowerCase().includes(inputValue.value.toLowerCase()),
-	);
-});
 
 const selectedItems = computed(() =>
-	multiselectData.filter(({ value }) => model.value?.includes(String(value))),
+	multiselectData.filter(({ value }) => model.value?.includes(value)),
 );
 
-const addOrRemoveItem = (itemValue: string) => {
+const addOrRemoveItem = (itemValue: unknown) => {
 	model.value = model.value?.includes(itemValue)
 		? model.value?.filter((value) => value !== itemValue)
 		: [...(model.value as string[]), itemValue];
 };
 
-const onItemClick = (itemValue: string) => {
-	addOrRemoveItem(itemValue);
-	emit('input', model.value);
-	emit('change', model.value);
-	inputValue.value = '';
-};
+onMounted(() => (model.value = initialValue));
 </script>
 
 <style scoped>
