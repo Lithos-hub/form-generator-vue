@@ -11,33 +11,7 @@
 			:key="i"
 			:class="`col-span-${colspan || 12} self-start`">
 			<component
-				:is="customComponent || componentOptions.input"
-				v-if="componentType === 'input'"
-				v-model="model[props.name]"
-				v-bind="props" />
-			<component
-				:is="customComponent || componentOptions.select"
-				v-if="componentType === 'select'"
-				v-model="model[props.name]"
-				v-bind="props" />
-			<component
-				:is="customComponent || componentOptions.multiselect"
-				v-if="componentType === 'multiselect'"
-				v-model="model[props.name]"
-				v-bind="props" />
-			<component
-				:is="customComponent || componentOptions.textarea"
-				v-if="componentType === 'textarea'"
-				v-model="model[props.name]"
-				v-bind="props" />
-			<component
-				:is="customComponent || componentOptions.radio"
-				v-if="componentType === 'radio'"
-				v-model="model[props.name]"
-				v-bind="props" />
-			<component
-				:is="customComponent || componentOptions.checkbox"
-				v-if="componentType === 'checkbox'"
+				:is="customComponent || componentOptions[componentType as keyof typeof componentOptions]"
 				v-model="model[props.name]"
 				v-bind="props" />
 		</div>
