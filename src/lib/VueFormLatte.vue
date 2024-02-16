@@ -28,7 +28,7 @@ import { componentOptions } from './VueFormLatte.const';
 import { initFlowbite } from 'flowbite';
 import { ValidationError } from 'yup';
 
-const { components, schema } = withDefaults(defineProps<VueFormLatteProps>(), {
+const { components, schema, validateOnSubmit } = withDefaults(defineProps<VueFormLatteProps>(), {
 	format: 'column',
 });
 
@@ -38,7 +38,17 @@ const model = ref<VueFormLatte>({});
 
 const validationError = ref<Record<string, string>>({});
 
-const onSubmit = () => emit('submit', model.value);
+const onSubmit = async () => {
+	if (validateOnSubmit) {
+		try {
+			await onValidate(model.value);
+			validationError.value = {};
+			emit('submit', model.value);
+		} catch (error) {
+			console.log('Error on submit', error);
+		}
+	}
+};
 
 onMounted(() => {
 	components.forEach(({ props }) => (model.value[props.name] = props.initialValue));
@@ -55,11 +65,19 @@ const onValidate = async (values: VueFormLatte) => {
 			validationError.value = {
 				[fieldName]: message,
 			};
+			throw new Error('Validation error');
 		}
 	}
 };
 
-watch(model, (value) => onValidate(value), { deep: true });
+watch(
+	model,
+	(value) => {
+		if (validateOnSubmit) return;
+		onValidate(value);
+	},
+	{ deep: true },
+);
 
 defineExpose({ model, onSubmit });
 </script>

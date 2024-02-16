@@ -32,6 +32,7 @@ interface FormComponentProps {
 	disabled?: boolean;
 	readonly?: boolean;
 	isToggle?: boolean;
+	minLength?: number;
 	selectData?: BaseSelectItem[];
 	multiselectData?: BaseMultiselectItem[];
 	radioData?: BaseRadioItem[];
@@ -48,6 +49,7 @@ export interface VueFormLatteProps {
 	dark?: boolean;
 	format?: 'grid' | 'column';
 	schema?: Schema;
+	validateOnSubmit?: boolean;
 	components: VueFormLatteItem[];
 }
 

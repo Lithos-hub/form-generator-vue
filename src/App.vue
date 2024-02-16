@@ -6,6 +6,7 @@
 				format="grid"
 				:components="components"
 				:schema="schema"
+				validate-on-submit
 				@submit="onSubmit" />
 			<button
 				class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
@@ -38,7 +39,7 @@ const schema = Yup.object({
 	defaultStyledInput: Yup.string().required().min(8),
 	defaultSelect: Yup.string().required(),
 	defaultMultiselect: Yup.array().min(1),
-	defaultTextarea: Yup.string().required().min(8),
+	defaultTextarea: Yup.string().required().min(16),
 	defaultRadio: Yup.string().required(),
 	defaultCheckbox: Yup.boolean().required(),
 	defaultCheckboxToggle: Yup.boolean().required(),
@@ -129,9 +130,10 @@ const components: VueFormLatteItem[] = [
 		colspan: 6,
 		props: {
 			name: 'defaultTextarea',
-			initialValue: 'This is the textarea value',
+			initialValue: 'Some text',
 			label: 'Textarea label',
 			placeholder: 'Textarea placeholder',
+			minLength: 16,
 		},
 	},
 	{
