@@ -19,7 +19,7 @@ export default defineConfig({
 			fileName: (format) => `vue-form-latte.${format}.js`,
 		},
 		rollupOptions: {
-			external: ['vue', 'tailwindcss', 'flowbite'],
+			external: ['vue', 'tailwindcss', 'flowbite', '@heroicons/vue'],
 			output: {
 				globals: {
 					vue: 'Vue',

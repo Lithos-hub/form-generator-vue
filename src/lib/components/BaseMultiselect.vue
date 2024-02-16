@@ -14,6 +14,11 @@
 				:placeholder="selectedItems.length ? '' : placeholder"
 				class="default__input"
 				@focus="isSelecting = true" />
+			<ChevronDownIcon
+				class="h-5 w-auto absolute right-2.5 top-1/2 -translate-y-1/2 text-black/50 duration-200"
+				:class="{
+					'rotate-180': isSelecting,
+				}" />
 			<!-- Chips -->
 			<ul
 				v-if="selectedItems.length < 5"
@@ -57,6 +62,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, Ref } from 'vue';
 import { BaseMultiselectProps } from './BaseMultiselect.interfaces';
+import { ChevronDownIcon } from '@heroicons/vue/24/solid';
 
 const { multiselectData, initialValue } = defineProps<BaseMultiselectProps>();
 

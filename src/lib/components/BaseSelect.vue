@@ -13,6 +13,11 @@
 				data-testid="base-select__input"
 				class="default__input"
 				@focus="isSelecting = true" />
+			<ChevronDownIcon
+				class="h-5 w-auto absolute right-2.5 top-1/2 -translate-y-1/2 text-black/50 duration-200"
+				:class="{
+					'rotate-180': isSelecting,
+				}" />
 		</div>
 		<ul
 			v-if="isSelecting"
@@ -31,6 +36,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { BaseSelectProps } from './BaseSelect.interfaces';
+import { ChevronDownIcon } from '@heroicons/vue/24/solid';
 
 defineProps<BaseSelectProps>();
 
