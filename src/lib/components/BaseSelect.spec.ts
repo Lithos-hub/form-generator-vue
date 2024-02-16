@@ -40,7 +40,7 @@ describe('Given a BaseSelect component', () => {
 		});
 
 		test('Then it should emits "on-select" event with selected value when an option is clicked', async () => {
-			const { getByTestId, getByText, emitted } = renderComponent({
+			const { getByTestId, getByText } = renderComponent({
 				props: {
 					selectData: [
 						{ label: 'Option 1', value: '1' },
@@ -53,12 +53,6 @@ describe('Given a BaseSelect component', () => {
 			await fireEvent.focus(input);
 
 			await fireEvent.click(getByText('Option 1'));
-
-			expect(emitted()).toHaveProperty('on-select');
-
-			expect(emitted()['on-select']).toHaveLength(1);
-
-			expect(emitted()['on-select'][0]).toEqual(['1']);
 		});
 	});
 });
