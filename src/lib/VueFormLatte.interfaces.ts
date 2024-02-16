@@ -1,4 +1,5 @@
 // import { FormType } from "./VueFormLatte.const";
+import { Schema } from 'yup';
 import { BaseCheckboxItem } from './components/BaseCheckbox.interfaces';
 import { BaseMultiselectItem } from './components/BaseMultiselect.interfaces';
 import { BaseRadioItem } from './components/BaseRadio.interfaces';
@@ -46,6 +47,7 @@ export interface VueFormLatteItem {
 export interface VueFormLatteProps {
 	dark?: boolean;
 	format?: 'grid' | 'column';
+	schema?: Schema;
 	components: VueFormLatteItem[];
 }
 

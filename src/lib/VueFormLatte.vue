@@ -14,17 +14,21 @@
 				:is="customComponent || componentOptions[componentType as keyof typeof componentOptions]"
 				v-model="model[props.name]"
 				v-bind="props" />
+			<small v-if="validationError[props.name]" class="text-red-500">
+				{{ validationError[props.name] }}
+			</small>
 		</div>
 	</form>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { VueFormLatteProps, VueFormLatte } from './VueFormLatte.interfaces';
 import { componentOptions } from './VueFormLatte.const';
 import { initFlowbite } from 'flowbite';
+import { ValidationError } from 'yup';
 
-const { components } = withDefaults(defineProps<VueFormLatteProps>(), {
+const { components, schema } = withDefaults(defineProps<VueFormLatteProps>(), {
 	format: 'column',
 });
 
@@ -32,12 +36,30 @@ const emit = defineEmits(['submit']);
 
 const model = ref<VueFormLatte>({});
 
+const validationError = ref<Record<string, string>>({});
+
 const onSubmit = () => emit('submit', model.value);
 
 onMounted(() => {
 	components.forEach(({ props }) => (model.value[props.name] = props.initialValue));
 	initFlowbite();
 });
+
+const onValidate = async (values: VueFormLatte) => {
+	try {
+		await schema.validate(values);
+	} catch (error) {
+		if (error instanceof ValidationError) {
+			const fieldName = error.path as string;
+			const message = error.message as string;
+			validationError.value = {
+				[fieldName]: message,
+			};
+		}
+	}
+};
+
+watch(model, (value) => onValidate(value), { deep: true });
 
 defineExpose({ model, onSubmit });
 </script>

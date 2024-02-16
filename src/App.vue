@@ -1,7 +1,12 @@
 <template>
 	<div class="bg-stone-100 h-screen flex flex-col justify-center items-center">
 		<div class="bg-white p-5 rounded shadow-xl w-[75vw] max-h-[90vh] overflow-auto">
-			<VueFormLatte ref="formRef" format="grid" :components="components" @submit="onSubmit" />
+			<VueFormLatte
+				ref="formRef"
+				format="grid"
+				:components="components"
+				:schema="schema"
+				@submit="onSubmit" />
 			<button
 				class="text-white bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"
 				@click="submitForm">
@@ -10,7 +15,7 @@
 			<hr class="my-10" />
 			<strong>Form values:</strong>
 			<pre class="bg-[#34495E] text-[#41B883] rounded p-2 font-sans max-h-[300px] overflow-auto">{{
-				formValues
+				formRef?.model
 			}}</pre>
 		</div>
 	</div>
@@ -20,11 +25,24 @@
 import VueFormLatte from './lib/VueFormLatte.vue';
 import { VueFormLatteItem } from './lib/VueFormLatte.interfaces';
 import CustomInput from './CustomInput.vue';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
+import * as Yup from 'yup';
 
 const formRef = ref<InstanceType<typeof VueFormLatte>>();
 
-const formValues = computed(() => formRef.value?.model);
+const schema = Yup.object({
+	defaultInput: Yup.string()
+		.required('This field must be not empty')
+		.min(8, 'You have to write at least 8 characters'),
+	customInput: Yup.string().required().min(8),
+	defaultStyledInput: Yup.string().required().min(8),
+	defaultSelect: Yup.string().required(),
+	defaultMultiselect: Yup.array().min(1),
+	defaultTextarea: Yup.string().required().min(8),
+	defaultRadio: Yup.string().required(),
+	defaultCheckbox: Yup.boolean().required(),
+	defaultCheckboxToggle: Yup.boolean().required(),
+});
 
 const components: VueFormLatteItem[] = [
 	{
