@@ -169,6 +169,18 @@ const components: VueFormLatteItem[] = [
 			label: 'Single toggle label',
 		},
 	},
+	{
+		componentType: 'slider',
+		colspan: 6,
+		props: {
+			name: 'defaultSlider',
+			initialValue: 50,
+			label: 'Slider label',
+			min: 0,
+			max: 100,
+			step: 1,
+		},
+	},
 ];
 
 const submitForm = () => formRef.value?.onSubmit();

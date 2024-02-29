@@ -21,6 +21,15 @@ type InputType =
 	| 'file'
 	| 'hidden';
 
+type ComponentType =
+	| 'input'
+	| 'textarea'
+	| 'select'
+	| 'multiselect'
+	| 'radio'
+	| 'checkbox'
+	| 'slider';
+
 interface FormComponentProps {
 	customStyles?: string;
 	name: string;
@@ -33,13 +42,16 @@ interface FormComponentProps {
 	readonly?: boolean;
 	isToggle?: boolean;
 	minLength?: number;
+	min?: number;
+	max?: number;
+	step?: number;
 	selectData?: BaseSelectItem[];
 	multiselectData?: BaseMultiselectItem[];
 	radioData?: BaseRadioItem[];
 	checkboxData?: BaseCheckboxItem[];
 }
 export interface VueFormLatteItem {
-	componentType: string;
+	componentType: ComponentType;
 	customComponent?: unknown;
 	colspan?: number | string;
 	props: FormComponentProps;

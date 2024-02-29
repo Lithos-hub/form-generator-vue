@@ -1,4 +1,4 @@
-# Vue Form Latte (WIP)
+# Vue Form Latte
 
 <div id="header" align="center">
 <img src='public/logo-v2.png' width='200' />
@@ -25,8 +25,54 @@ npm install vue-form-latte
 
 ## Features
 
-TODO
+- **TypeScript Support**: Vue Form Latte is written in TypeScript and provides full support for TypeScript.
+- **Tailwind CSS**: Vue Form Latte is designed to work with Tailwind CSS out of the box.
+- **Flexible**: Vue Form Latte is designed to be flexible and powerful. It provides a wide range of options for customizing the form and its fields.
+- **Validation**: Vue Form Latte provides built-in support for form validation.
+- **Custom Fields**: Vue Form Latte allows you to create custom form fields and use them in your forms.
 
-## Usage
+## Usage (v0.1.2)
 
-TODO
+```vue
+<template>
+	<VueFormLatte
+		ref="formRef"
+		format="grid"
+		:components="components"
+		:schema="schema"
+		validate-on-submit
+		@submit="onSubmit" />
+</template>
+
+<script setup lang="ts">
+import { VueFormLatte } from 'vue-form-latte';
+import * as Yup from 'yup';
+
+const schema = Yup.object({
+    name: Yup.string().required(),
+    email: Yup.string().email().required(),
+});
+
+const components: VueFormLatteItem[] = [
+    {
+		componentType: 'input',
+		colspan: 4,
+		props: {
+			name: 'name',
+			initialValue: '',
+			placeholder: 'Write your name',
+			label: 'User name',
+		},
+    },
+    {
+        componentType: 'input',
+        colspan: 4,
+        props: {
+            name: 'email',
+            initialValue: '',
+            placeholder: 'Write your email',
+            label: 'Email',
+        },
+    },
+];
+```
