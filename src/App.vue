@@ -171,7 +171,7 @@ const components: VueFormLatteItem[] = [
 	},
 	{
 		componentType: 'slider',
-		colspan: 6,
+		colspan: 3,
 		props: {
 			name: 'defaultSlider',
 			initialValue: 50,

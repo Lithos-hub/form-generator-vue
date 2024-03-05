@@ -1,11 +1,23 @@
 <template>
-	<div>
-		<input type="range" min="0" max="100" step="1" />
+	<div data-testid="slider">
+		<label v-if="label" :for="name" class="default__label">{{ label }}</label>
+		<input
+			id="default-range"
+			v-model="model"
+			type="range"
+			class="w-full h-2 bg-indigo-200 rounded-lg appearance-none cursor-pointer dark:bg-indigo-700" />
 	</div>
 </template>
 
 <script setup lang="ts">
-import { SliderProps } from './BaseSlider.interfaces';
+import { onMounted } from 'vue';
+import { BaseSliderProps } from './BaseSlider.interfaces';
 
-defineProps<SliderProps>();
+const { modelValue } = defineProps<BaseSliderProps>();
+
+const model = defineModel<string | number>();
+
+onMounted(() => {
+	model.value = modelValue;
+});
 </script>
