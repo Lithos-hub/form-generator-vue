@@ -65,6 +65,6 @@ export interface VueFormLatteProps {
 	components: VueFormLatteItem[];
 }
 
-export interface VueFormLatte {
+export interface IVueFormLatte {
 	[key: string]: FormComponentProps['initialValue'];
 }

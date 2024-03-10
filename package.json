@@ -6,19 +6,20 @@
 		"url": "https://github.com/Lithos-hub/vue-form-latte.git/issues"
 	},
 	"private": false,
-	"version": "0.1.31",
+	"version": "0.1.32",
 	"type": "module",
 	"files": [
 		"dist"
 	],
-	"main": "./dist/vue-form-latte.umd.js",
-	"module": "./dist/vue-form-latte.es.js",
-	"types": "./dist/src/lib/index.d.ts",
+	"main": "./dist/vue-form-latte.umd.cjs",
+	"module": "./dist/vue-form-latte.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/vue-form-latte.es.js",
-			"require": "./dist/vue-form-latte.umd.js"
+			"import": "./dist/vue-form-latte.js",
+			"require": "./dist/vue-form-latte.umd.cjs"
 		},
+		"./dist/index.d.ts": "./dist/index.d.ts",
 		"./dist/style.css": "./dist/style.css"
 	},
 	"repository": {
@@ -36,8 +37,8 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build && npm run build:tailwindcss && vue-tsc --emitDeclarationOnly && mv dist/src dist/types",
-		"build:tailwindcss": "npx tailwindcss -i ./src/lib/style.css -o ./dist/style.css --postcss --minify",
+		"build:windows": "tsc && vite build && npm run build:tailwindcss",
+		"build:tailwindcss": "npx tailwindcss -i ./lib/style.css -o ./dist/style.css --postcss --minify",
 		"preserve": "vite build",
 		"serve": "vite preview --port 5050",
 		"typecheck": "vue-tsc --noEmit",
