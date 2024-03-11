@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { VueFormLatteProps, IVueFormLatte } from './VueFormLatte.interfaces';
+import { VueFormLatteProps, IVueFormLatte } from './types';
 import { componentOptions } from './VueFormLatte.const';
 import { initFlowbite } from 'flowbite';
 import { ValidationError } from 'yup';

@@ -9,18 +9,18 @@
 	"version": "0.1.32",
 	"type": "module",
 	"files": [
-		"dist"
+		"/dist"
 	],
-	"main": "./dist/vue-form-latte.umd.cjs",
-	"module": "./dist/vue-form-latte.js",
+	"main": "dist/vue-form-latte.umd.js",
+	"module": "dist/vue-form-latte.es.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/vue-form-latte.js",
-			"require": "./dist/vue-form-latte.umd.cjs"
+			"import": "./dist/vue-form-latte.es.js",
+			"require": "./dist/vue-form-latte.umd.js",
+			"types": "./dist/vue-form-latte.d.ts"
 		},
-		"./dist/index.d.ts": "./dist/index.d.ts",
-		"./dist/style.css": "./dist/style.css"
+		"./styles.css": "./dist/style.css"
 	},
 	"repository": {
 		"type": "git",
@@ -37,7 +37,7 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build:windows": "tsc && vite build && npm run build:tailwindcss",
+		"build": "tsc && vite build && npm run build:tailwindcss",
 		"build:tailwindcss": "npx tailwindcss -i ./lib/style.css -o ./dist/style.css --postcss --minify",
 		"preserve": "vite build",
 		"serve": "vite preview --port 5050",

@@ -4,4 +4,4 @@ export default VueFormLatte;
 import './style.css';
 import 'flowbite';
 
-export type { VueFormLatteItem, VueFormLatteProps, IVueFormLatte } from './VueFormLatte.interfaces';
+export type { VueFormLatteItem, VueFormLatteProps, IVueFormLatte } from './types';

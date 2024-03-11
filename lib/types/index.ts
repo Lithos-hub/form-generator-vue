@@ -1,9 +1,9 @@
 // import { FormType } from "./VueFormLatte.const";
 import { Schema } from 'yup';
-import { BaseCheckboxItem } from './components/BaseCheckbox.interfaces';
-import { BaseMultiselectItem } from './components/BaseMultiselect.interfaces';
-import { BaseRadioItem } from './components/BaseRadio.interfaces';
-import { BaseSelectItem } from './components/BaseSelect.interfaces';
+import { BaseCheckboxItem } from '../components/BaseCheckbox.interfaces';
+import { BaseMultiselectItem } from '../components/BaseMultiselect.interfaces';
+import { BaseRadioItem } from '../components/BaseRadio.interfaces';
+import { BaseSelectItem } from '../components/BaseSelect.interfaces';
 
 type InputType =
 	| 'text'

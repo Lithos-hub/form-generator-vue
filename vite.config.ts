@@ -6,24 +6,16 @@ import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [
-		vue(),
-		cssInjectedByJsPlugin(),
-		dts({
-			rollupTypes: true,
-		}),
-	],
+	plugins: [vue(), cssInjectedByJsPlugin(), dts()],
 	build: {
 		sourcemap: true,
-		copyPublicDir: false,
+		emptyOutDir: true,
 		cssCodeSplit: true,
-		outDir: 'dist',
-		target: 'esnext',
+		copyPublicDir: false,
 		lib: {
 			entry: resolve(__dirname, 'lib/index.ts'),
 			name: 'VueFormLatte',
-			fileName: 'vue-form-latte',
-			formats: ['es', 'cjs', 'umd', 'iife'],
+			fileName: (format) => `vue-form-latte.${format}.js`,
 		},
 		rollupOptions: {
 			external: ['vue', 'tailwindcss', 'flowbite', '@heroicons/vue'],
