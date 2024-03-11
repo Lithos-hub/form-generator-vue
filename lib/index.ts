@@ -1,5 +1,5 @@
 import VueFormLatte from './VueFormLatte.vue';
-export default VueFormLatte;
+export { VueFormLatte };
 
 import './style.css';
 import 'flowbite';

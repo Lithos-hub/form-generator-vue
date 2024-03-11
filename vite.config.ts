@@ -15,7 +15,7 @@ export default defineConfig({
 		lib: {
 			entry: resolve(__dirname, 'lib/index.ts'),
 			name: 'VueFormLatte',
-			fileName: (format) => `vue-form-latte.${format}.js`,
+			fileName: (format) => `index.${format}.js`,
 		},
 		rollupOptions: {
 			external: ['vue', 'tailwindcss', 'flowbite', '@heroicons/vue'],
