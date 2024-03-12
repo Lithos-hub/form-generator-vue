@@ -7,9 +7,10 @@ export interface BaseRadioItem {
 }
 
 export interface BaseRadioProps extends /* @vue-ignore */ InputHTMLAttributes {
-	modelValue: string | number;
-	label?: string;
+	initialValue: string | number;
 	name: string;
-	format?: 'row' | 'column';
 	radioData: BaseRadioItem[];
+	label?: string;
+	format?: 'row' | 'column';
+	modelValue?: string | number;
 }
