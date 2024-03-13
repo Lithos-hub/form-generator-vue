@@ -48,8 +48,8 @@ export interface FormComponentProps {
 // 	checkboxData?: BaseCheckboxItem[];
 // }
 export interface VueFormLatteItem {
-	componentType: ComponentType;
 	props: FormComponentProps[ComponentType];
+	componentType?: ComponentType;
 	customComponent?: unknown;
 	colspan?: number | string;
 }
@@ -62,6 +62,6 @@ export interface VueFormLatteProps {
 	validateOnSubmit?: boolean;
 }
 
-export interface IVueFormLatte {
-	[key: string]: FormComponentProps[ComponentType]['initialValue'];
+export interface VueFormLatteModel {
+	[key: string]: unknown;
 }

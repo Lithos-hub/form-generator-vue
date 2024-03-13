@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { VueFormLatteProps, IVueFormLatte } from './types';
+import { VueFormLatteProps, VueFormLatteModel } from './types';
 import { componentOptions } from './VueFormLatte.const';
 import { initFlowbite } from 'flowbite';
 import { ValidationError } from 'yup';
@@ -34,7 +34,7 @@ const { components, schema, validateOnSubmit } = withDefaults(defineProps<VueFor
 
 const emit = defineEmits(['submit']);
 
-const model = ref<IVueFormLatte>({});
+const model = ref<VueFormLatteModel>({});
 
 const validationError = ref<Record<string, string>>({});
 
@@ -55,7 +55,7 @@ onMounted(() => {
 	initFlowbite();
 });
 
-const onValidate = async (values: IVueFormLatte) => {
+const onValidate = async (values: VueFormLatteModel) => {
 	try {
 		await schema.validate(values);
 	} catch (error) {

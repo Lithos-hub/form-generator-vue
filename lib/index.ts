@@ -7,6 +7,6 @@ import 'flowbite';
 export type {
 	VueFormLatteItem,
 	VueFormLatteProps,
-	IVueFormLatte,
+	VueFormLatteModel,
 	FormComponentProps,
 } from './types';
