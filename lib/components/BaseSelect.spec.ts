@@ -13,13 +13,25 @@ describe('Given a BaseSelect component', () => {
 			expect(getByText('Test Label')).toBeTruthy();
 		});
 
-		test('Then the input should display "Select an option" as value when no value is selected', () => {
-			const { getByTestId } = renderComponent({
-				props: { selectData: [] },
-			});
+		describe('And the placeholder prop is passed', () => {
+			test('Then the input should display "Select an option" as value when no value is selected', () => {
+				const { getByTestId } = renderComponent({
+					props: { selectData: [], placeholder: 'Select an option' },
+				});
 
-			const input = getByTestId('base-select__input');
-			expect((input as HTMLInputElement).value).toBe('Select an option');
+				const input = getByTestId('base-select__input');
+				expect((input as HTMLInputElement).value).toBe('Select an option');
+			});
+		});
+		describe('And the placeholder prop is not passed', () => {
+			test('Then the input should display an empty string', () => {
+				const { getByTestId } = renderComponent({
+					props: { selectData: [] },
+				});
+
+				const input = getByTestId('base-select__input');
+				expect((input as HTMLInputElement).value).toBe('');
+			});
 		});
 
 		test('Then it should renders selected option label when value is selected', async () => {
