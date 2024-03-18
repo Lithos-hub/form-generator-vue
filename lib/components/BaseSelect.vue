@@ -8,7 +8,7 @@
 
 		<div class="relative">
 			<input
-				:value="selectData?.find((option) => option.value === model)?.label || 'Select an option'"
+				:value="selectData?.find((option) => option.value === model)?.label || placeholder || ''"
 				readonly
 				data-testid="base-select__input"
 				class="default__input"

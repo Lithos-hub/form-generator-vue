@@ -27,26 +27,6 @@ export interface FormComponentProps {
 	slider: BaseSliderProps;
 }
 
-// interface FormComponentProps {
-// 	name: string;
-// 	customStyles?: string;
-// 	type?: InputType;
-// 	initialValue?: unknown;
-// 	placeholder?: string;
-// 	label?: string;
-// 	required?: boolean;
-// 	disabled?: boolean;
-// 	readonly?: boolean;
-// 	isToggle?: boolean;
-// 	minLength?: number;
-// 	min?: number;
-// 	max?: number;
-// 	step?: number;
-// 	selectData?: BaseSelectItem[];
-// 	multiselectData?: BaseMultiselectItem[];
-// 	radioData?: BaseRadioItem[];
-// 	checkboxData?: BaseCheckboxItem[];
-// }
 export interface VueFormLatteItem {
 	props: FormComponentProps[ComponentType];
 	componentType?: ComponentType;
@@ -60,6 +40,7 @@ export interface VueFormLatteProps {
 	format?: 'grid' | 'column';
 	schema?: Schema;
 	validateOnSubmit?: boolean;
+	validateOnBlur?: boolean;
 }
 
 export interface VueFormLatteModel {
