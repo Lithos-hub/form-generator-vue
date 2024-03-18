@@ -7,10 +7,11 @@ export interface BaseCheckboxItem {
 }
 
 export interface BaseCheckboxProps extends /* @vue-ignore */ InputHTMLAttributes {
-	modelValue: string | number;
-	label?: string;
+	initialValue: boolean;
 	name: string;
+	label?: string;
 	format?: 'row' | 'column';
 	isToggle?: boolean;
 	checkboxData?: BaseCheckboxItem[];
+	modelValue?: boolean;
 }

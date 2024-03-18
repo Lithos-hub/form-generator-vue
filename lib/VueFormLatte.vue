@@ -5,6 +5,7 @@
 			'grid grid-cols-12': format === 'grid',
 			'flex flex-col': format === 'column',
 		}"
+		@blur.prevent="validateOnBlur && onValidate(model)"
 		@submit.prevent="onSubmit">
 		<div
 			v-for="({ componentType, customComponent, colspan, props }, i) of components"
@@ -23,18 +24,21 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { VueFormLatteProps, IVueFormLatte } from './types';
+import { VueFormLatteProps, VueFormLatteModel } from './types';
 import { componentOptions } from './VueFormLatte.const';
 import { initFlowbite } from 'flowbite';
 import { ValidationError } from 'yup';
 
-const { components, schema, validateOnSubmit } = withDefaults(defineProps<VueFormLatteProps>(), {
-	format: 'column',
-});
+const { components, schema, validateOnSubmit, validateOnBlur } = withDefaults(
+	defineProps<VueFormLatteProps>(),
+	{
+		format: 'column',
+	},
+);
 
 const emit = defineEmits(['submit']);
 
-const model = ref<IVueFormLatte>({});
+const model = ref<VueFormLatteModel>({});
 
 const validationError = ref<Record<string, string>>({});
 
@@ -46,6 +50,7 @@ const onSubmit = async () => {
 			emit('submit', model.value);
 		} catch (error) {
 			console.log('Error on submit', error);
+			throw new Error('FORM_SUBMIT_ERROR');
 		}
 	}
 };
@@ -55,7 +60,7 @@ onMounted(() => {
 	initFlowbite();
 });
 
-const onValidate = async (values: IVueFormLatte) => {
+const onValidate = async (values: VueFormLatteModel) => {
 	try {
 		await schema.validate(values);
 	} catch (error) {
@@ -65,7 +70,7 @@ const onValidate = async (values: IVueFormLatte) => {
 			validationError.value = {
 				[fieldName]: message,
 			};
-			throw new Error('Validation error');
+			throw new Error('FORM_VALIDATION_ERROR');
 		}
 	}
 };
