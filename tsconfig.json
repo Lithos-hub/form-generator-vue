@@ -8,7 +8,6 @@
 
 		/* Bundler mode */
 		"moduleResolution": "Node",
-		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
@@ -20,6 +19,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
+
 		/*Declaration */
 		"declaration": true,
 
@@ -28,7 +28,13 @@
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true
 	},
-	"include": ["lib/**/*.ts", "lib/**/*.tsx", "lib/**/*.vue", "./lib/index.ts"],
+	"include": [
+		"lib/**/*.ts",
+		"lib/**/*.tsx",
+		"lib/**/*.vue",
+		"./lib/index.ts",
+		"./tailwind.config.cjs"
+	],
 
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

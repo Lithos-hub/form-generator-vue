@@ -10,7 +10,10 @@
 		<div
 			v-for="({ componentType, customComponent, colspan, props }, i) of components"
 			:key="i"
-			:class="`col-span-${colspan || 12} self-start`">
+			:style="{
+				'grid-column': format === 'grid' ? `span ${colspan || 12}` : 'none',
+				'align-self': format === 'grid' ? 'start' : 'none',
+			}">
 			<component
 				:is="customComponent || componentOptions[componentType as keyof typeof componentOptions]"
 				v-model="model[props.name]"
@@ -24,7 +27,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
-import { VueFormLatteProps, VueFormLatteModel } from './types';
+import { VueFormLatteProps, VueFormLatteModel } from '../types';
 import { componentOptions } from './VueFormLatte.const';
 import { initFlowbite } from 'flowbite';
 import { ValidationError } from 'yup';

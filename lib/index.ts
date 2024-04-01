@@ -1,4 +1,4 @@
-import VueFormLatte from './VueFormLatte.vue';
+import VueFormLatte from './components/VueFormLatte.vue';
 export { VueFormLatte };
 
 import './style.css';
