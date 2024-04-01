@@ -5,4 +5,5 @@ export interface BaseTextareaProps extends /* @vue-ignore */ TextareaHTMLAttribu
 	name: string;
 	label?: string;
 	modelValue?: string;
+	customStyles?: string;
 }
