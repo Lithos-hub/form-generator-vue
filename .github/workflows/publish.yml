@@ -44,12 +44,9 @@ jobs:
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
-          scope: '@carlos-segura'
       - run: npm install
-      - name: Update package.json name
-        run: sed -i '2,2s/node-sql-parser/@carlos-segura\/node-sql-parser/g' package.json
-      - run: echo registry=https://npm.pkg.github.com/carlos-segura >> .npmrc
+      - run: echo registry=https://npm.pkg.github.com >> .npmrc
       - run: npm run build
-      - run: cd output/prod && npm publish
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_TOKEN}}
