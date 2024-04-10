@@ -1,7 +1,7 @@
 <template>
 	<div data-testid="base-input">
 		<label v-if="label" :for="name" class="default__label">{{ label }}</label>
-		<input v-model="model" v-bind="$attrs" :class="customStyles || 'default__input'" />
+		<input :id="name" v-model="model" v-bind="$attrs" :class="customStyles || 'default__input'" />
 	</div>
 </template>
 

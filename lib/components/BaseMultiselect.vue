@@ -9,6 +9,7 @@
 
 		<div class="relative overflow-auto">
 			<input
+				:id="name"
 				readonly
 				data-testid="base-select__input"
 				:placeholder="selectedItems.length ? '' : placeholder"

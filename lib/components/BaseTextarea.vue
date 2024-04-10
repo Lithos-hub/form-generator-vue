@@ -3,7 +3,11 @@
 		<label v-if="label" :for="name" class="default__label">
 			{{ label }}
 		</label>
-		<textarea v-model="model" v-bind="$attrs" :class="customStyles || 'default__textarea'" />
+		<textarea
+			:id="name"
+			v-model="model"
+			v-bind="$attrs"
+			:class="customStyles || 'default__textarea'" />
 	</div>
 </template>
 

@@ -2,7 +2,7 @@
 	<div data-testid="slider">
 		<label v-if="label" :for="name" class="default__label">{{ label }}</label>
 		<input
-			id="default-range"
+			:id="name"
 			v-model="model"
 			data-testid="slider__input"
 			type="range"

@@ -1,5 +1,6 @@
 <template>
 	<form
+		ref="formRef"
 		class="gap-5"
 		:class="{
 			'grid grid-cols-12': format === 'grid',
@@ -36,26 +37,39 @@ const { components, schema, validateOnSubmit, validateOnBlur } = withDefaults(
 	defineProps<VueFormLatteProps>(),
 	{
 		format: 'column',
+		validateOnSubmit: true,
 	},
 );
 
 const emit = defineEmits(['submit']);
 
 const model = ref<VueFormLatteModel>({});
-
+const formRef = ref<HTMLFormElement | null>(null);
 const validationError = ref<Record<string, string>>({});
 
 const onSubmit = async () => {
-	if (validateOnSubmit) {
-		try {
-			await onValidate();
-		} catch (error) {
-			throw new Error('FORM_SUBMIT_ERROR');
-		} finally {
-			emit('submit', {
-				values: model.value,
-				errors: validationError.value,
-			});
+	try {
+		await onValidate();
+	} catch (error) {
+		throw new Error('FORM_SUBMIT_ERROR', error as ErrorOptions);
+	} finally {
+		emit('submit', {
+			values: { ...model.value },
+			errors: { ...validationError.value },
+		});
+	}
+};
+
+const onValidate = async () => {
+	try {
+		await schema.validate(model.value, { abortEarly: false });
+		validationError.value = {};
+	} catch (error) {
+		if (error instanceof ValidationError) {
+			validationError.value = error.inner.reduce(
+				(acc, { path, message }) => ({ ...acc, [path as string]: message }),
+				{},
+			);
 		}
 	}
 };
@@ -64,21 +78,6 @@ onMounted(() => {
 	components.forEach(({ props }) => (model.value[props.name] = props.initialValue));
 	initFlowbite();
 });
-
-const onValidate = async () => {
-	try {
-		await schema.validate(model.value);
-	} catch (error) {
-		if (error instanceof ValidationError) {
-			const fieldName = error.path as string;
-			const message = error.message as string;
-			validationError.value = {
-				[fieldName]: message,
-			};
-			throw new Error('FORM_VALIDATION_ERROR');
-		}
-	}
-};
 
 watch(
 	model,
@@ -89,5 +88,5 @@ watch(
 	{ deep: true },
 );
 
-defineExpose({ model, onSubmit });
+defineExpose({ formRef, model, onSubmit });
 </script>
