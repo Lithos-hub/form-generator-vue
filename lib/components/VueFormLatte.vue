@@ -5,7 +5,7 @@
 			'grid grid-cols-12': format === 'grid',
 			'flex flex-col': format === 'column',
 		}"
-		@blur.prevent="validateOnBlur && onValidate(model)"
+		@blur.prevent="validateOnBlur && onValidate"
 		@submit.prevent="onSubmit">
 		<div
 			v-for="({ componentType, customComponent, colspan, props }, i) of components"
@@ -48,12 +48,14 @@ const validationError = ref<Record<string, string>>({});
 const onSubmit = async () => {
 	if (validateOnSubmit) {
 		try {
-			await onValidate(model.value);
-			validationError.value = {};
-			emit('submit', model.value);
+			await onValidate();
 		} catch (error) {
-			console.log('Error on submit', error);
 			throw new Error('FORM_SUBMIT_ERROR');
+		} finally {
+			emit('submit', {
+				values: model.value,
+				errors: validationError.value,
+			});
 		}
 	}
 };
@@ -63,9 +65,9 @@ onMounted(() => {
 	initFlowbite();
 });
 
-const onValidate = async (values: VueFormLatteModel) => {
+const onValidate = async () => {
 	try {
-		await schema.validate(values);
+		await schema.validate(model.value);
 	} catch (error) {
 		if (error instanceof ValidationError) {
 			const fieldName = error.path as string;
@@ -80,9 +82,9 @@ const onValidate = async (values: VueFormLatteModel) => {
 
 watch(
 	model,
-	(value) => {
+	() => {
 		if (validateOnSubmit) return;
-		onValidate(value);
+		onValidate();
 	},
 	{ deep: true },
 );
