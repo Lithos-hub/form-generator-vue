@@ -13,4 +13,5 @@ export interface BaseRadioProps extends /* @vue-ignore */ InputHTMLAttributes {
 	label?: string;
 	format?: 'row' | 'column';
 	modelValue?: string | number;
+	customStyles?: string;
 }

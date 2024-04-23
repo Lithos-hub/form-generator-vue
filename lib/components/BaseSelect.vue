@@ -12,7 +12,7 @@
 				:value="selectData?.find((option) => option.value === model)?.label || placeholder || ''"
 				readonly
 				data-testid="base-select__input"
-				class="default__input"
+				:class="customStyles || 'default__input'"
 				@focus="isSelecting = true" />
 			<ChevronDownIcon
 				class="h-5 w-auto absolute right-2.5 top-1/2 -translate-y-1/2 text-black/50 duration-200"
@@ -26,7 +26,7 @@
 			<li
 				v-for="{ label, value } in selectData"
 				:key="value"
-				class="p-2 hover:bg-indigo-100 cursor-pointer first:rounded-t-md last:rounded-b-md"
+				class="p-2 hover:bg-indigo-100 cursor-pointer text-black/50 first:rounded-t-md last:rounded-b-md"
 				@click="onSelectItem(value)">
 				<small>{{ label }}</small>
 			</li>

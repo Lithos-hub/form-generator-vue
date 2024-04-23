@@ -15,4 +15,5 @@ export interface BaseMultiselectProps extends /* @vue-ignore */ SelectHTMLAttrib
 	disabled?: boolean;
 	readonly?: boolean;
 	modelValue?: string | number;
+	customStyles?: string;
 }

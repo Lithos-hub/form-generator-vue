@@ -29,3 +29,7 @@
 .checkbox__label {
 	@apply ms-2 text-sm font-medium text-gray-900 dark:text-gray-300;
 }
+
+.slider__input {
+	@apply w-full h-2 bg-indigo-200 rounded-lg appearance-none cursor-pointer dark:bg-indigo-700;
+}

@@ -12,4 +12,5 @@ export interface BaseSelectProps extends /* @vue-ignore */ SelectHTMLAttributes 
 	placeholder?: string;
 	label?: string;
 	readonly?: boolean;
+	customStyles?: string;
 }

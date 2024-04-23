@@ -14,4 +14,5 @@ export interface BaseCheckboxProps extends /* @vue-ignore */ InputHTMLAttributes
 	isToggle?: boolean;
 	checkboxData?: BaseCheckboxItem[];
 	modelValue?: boolean;
+	customStyles?: string;
 }

@@ -6,7 +6,7 @@
 			v-model="model"
 			data-testid="slider__input"
 			type="range"
-			class="w-full h-2 bg-indigo-200 rounded-lg appearance-none cursor-pointer dark:bg-indigo-700" />
+			:class="customStyles || 'slider__input'" />
 	</div>
 </template>
 

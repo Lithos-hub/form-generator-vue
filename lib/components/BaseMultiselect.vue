@@ -13,7 +13,7 @@
 				readonly
 				data-testid="base-select__input"
 				:placeholder="selectedItems.length ? '' : placeholder"
-				class="default__input"
+				:class="customStyles || 'default__input'"
 				@focus="isSelecting = true" />
 			<ChevronDownIcon
 				class="h-5 w-auto absolute right-2.5 top-1/2 -translate-y-1/2 text-black/50 duration-200"

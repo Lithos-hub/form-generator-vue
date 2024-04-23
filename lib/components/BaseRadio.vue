@@ -11,7 +11,7 @@
 				:name="name"
 				type="radio"
 				:value="value"
-				class="radio__input" />
+				:class="customStyles || 'radio__input'" />
 			<label :for="value" class="radio__label">{{ label }}</label>
 		</div>
 	</div>
